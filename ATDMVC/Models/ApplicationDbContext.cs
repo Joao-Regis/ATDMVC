@@ -14,5 +14,13 @@ namespace ATDMVC.Models
         }
 
         public DbSet<Request> Requests { get; set; }
+
+        public DbSet<Location> Locations { get; set; }
+
+        public DbSet<Rack> Racks { get; set; }
+
+        public DbSet<RackType> RackTypes { get; set; }
+
+        public DbSet<Repair> Repairs { get; set; }
     }
 }

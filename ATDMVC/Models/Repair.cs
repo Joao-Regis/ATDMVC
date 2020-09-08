@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ATDMVC.Models
 {
-    public class Repairs
+    public class Repair
     {
         [Key]
         public int RepairID { get; set; }
