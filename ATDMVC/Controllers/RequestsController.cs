@@ -12,6 +12,11 @@ namespace ATDMVC.Controllers
     {
         private readonly ApplicationDbContext _db;
 
+        [BindProperty]
+        public Request Request { get; set; }
+
+
+
         public RequestsController(ApplicationDbContext db)
         {
             _db = db;
@@ -20,6 +25,26 @@ namespace ATDMVC.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+
+        public IActionResult Upsert(int? id)
+        {
+            Request = new Request();
+            if (id == null)
+            {
+                //create
+                return View(Request);
+            }
+
+            //update
+            Request = _db.Requests.FirstOrDefault(u => u.RequestID == id);
+            if (Request == null)
+            {
+                return NotFound();
+            }
+
+            return View(Request);
         }
 
 
