@@ -48,6 +48,29 @@ namespace ATDMVC.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Upsert()
+        {
+            if (ModelState.IsValid)
+            {
+                if (Request.RequestID == 0)
+                {
+                    //create
+                    _db.Requests.Add(Request);
+                }
+                else
+                {
+                    _db.Requests.Update(Request);
+                }
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(Request);
+        }
+
+
+
 
         #region API Calls
 
